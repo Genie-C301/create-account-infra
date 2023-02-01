@@ -1,0 +1,14 @@
+[package]
+name = "genie_account"
+version = "1.0.0"
+
+[addresses]
+std = "0x1"
+aptos_framework = "0x1"
+genie_account = "_"
+
+[dependencies]
+AptosFramework = { local = "../framework/aptos-framework" }
+MoveStdlib = { local = "../framework/move-stdlib"}
+AptosStdlib = {local = "../framework/aptos-stdlib"}
+

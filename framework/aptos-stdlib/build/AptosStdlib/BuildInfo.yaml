@@ -1,0 +1,22 @@
+---
+compiled_package_info:
+  package_name: AptosStdlib
+  address_alias_instantiation:
+    Extensions: "0000000000000000000000000000000000000000000000000000000000000001"
+    aptos_framework: "0000000000000000000000000000000000000000000000000000000000000001"
+    aptos_std: "0000000000000000000000000000000000000000000000000000000000000001"
+    std: "0000000000000000000000000000000000000000000000000000000000000001"
+  source_digest: BA047CC6A0BC03DA4B96DE32C8E6DC25613D528D244C34658191635F70A5E135
+  build_flags:
+    dev_mode: false
+    test_mode: false
+    generate_docs: false
+    generate_abis: true
+    install_dir: ~
+    force_recompilation: false
+    additional_named_addresses: {}
+    architecture: ~
+    fetch_deps_only: false
+    skip_fetch_latest_git_deps: false
+dependencies:
+  - MoveStdlib
