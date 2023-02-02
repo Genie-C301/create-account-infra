@@ -1,6 +1,4 @@
 #!/bin/bash
-echo $PWD
-ls
 aptos key generate --output-file $PWD/new-key.json
 aptos init --network devnet --private-key-file $PWD/new-key.json
 PUBKEY=$(aptos account lookup-address | jq -r '.Result')
@@ -23,6 +21,7 @@ genie_account = "$PUBKEY"
 EOF
 
 aptos move create-resource-account-and-publish-package --seed 3020 --address-name genie --named-addresses source_addr=$PUBKEY --assume-yes --package-dir $PWD/genie_account --profile default
+
 rm -rf ./genie_account/build
 rm -rf .aptos
 rm -rf new-key.json
