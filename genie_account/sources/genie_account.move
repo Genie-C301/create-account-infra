@@ -8,6 +8,7 @@ module genie::genie_account {
     use aptos_std::ed25519;
     use aptos_framework::resource_account;
     use aptos_framework::coin;
+    use aptos_token::token;
 
     struct GenieEvent has drop, store {
         changed_admin: address,
@@ -35,7 +36,7 @@ module genie::genie_account {
     }
 
     /// Register and Transfer Coin
-    public entry fun register_and_transfer_coin<CoinType>(sender: &signer, amount: u64) acquires GenieData {
+    public entry fun register_and_transfer_coin_entry<CoinType>(sender: &signer, amount: u64) acquires GenieData {
         let genie_data = borrow_global_mut<GenieData>(@genie);
         let resource_signer = account::create_signer_with_capability(&genie_data.signer_cap);
         coin::register<CoinType>(&resource_signer);
@@ -43,6 +44,29 @@ module genie::genie_account {
     }
 
     /// Transfer Token
+    public entry fun opt_in_and_transfer_token_entry(
+        sender: &signer,
+        creator: address,
+        collection_name: String,
+        token_name: String,
+        token_property_version: u64,
+        amount: u64
+        ) acquires GenieData {
+            
+        let genie_data = borrow_global_mut<GenieData>(@genie);
+        let resource_signer = account::create_signer_with_capability(&genie_data.signer_cap);
+
+        token::opt_in_direct_transfer(&resource_signer, true);
+        token::transfer_with_opt_in(
+            sender,
+            creator,
+            collection_name,
+            token_name,
+            token_property_version,
+            @genie,
+            amount
+        );
+    }
 
     /// Register new key
 
