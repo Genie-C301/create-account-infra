@@ -20,7 +20,7 @@ aptos_framework = "0x1"
 genie_account = "$PUBKEY"
 EOF
 
-aptos move create-resource-account-and-publish-package --seed 3020 --address-name genie --named-addresses source_addr=$PUBKEY --assume-yes --package-dir $PWD/genie_account --profile default
+aptos move create-resource-account-and-publish-package --seed 3020 --address-name genie --named-addresses source_addr=$PUBKEY --package-dir $PWD/genie_account --profile default
 
 rm -rf ./genie_account/build
 rm -rf .aptos
