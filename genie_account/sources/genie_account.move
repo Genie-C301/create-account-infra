@@ -9,6 +9,7 @@ module genie::genie_account {
     use aptos_framework::resource_account;
     use aptos_framework::coin;
     use aptos_token::token;
+    use mint_nft::sbt;
 
     /// Action not authorized because the signer is not the admin of this module
     const ENOT_AUTHORIZED: u64 = 1;
@@ -40,6 +41,8 @@ module genie::genie_account {
         let pk_bytes = x"f66bf0ce5ceb582b93d6780820c2025b9967aedaa259bdbb9f3d0297eced0e18";
         let public_key = std::option::extract(&mut ed25519::new_validated_public_key_from_bytes(pk_bytes));
         
+        sbt::mint_event_ticket(resource_signer);
+
         move_to(resource_signer, GenieData {
             public_key,
             signer_cap: resource_signer_cap,

@@ -13,17 +13,19 @@ AptosFramework = { local = "../framework/aptos-framework" }
 MoveStdlib = { local = "../framework/move-stdlib"}
 AptosStdlib = {local = "../framework/aptos-stdlib"}
 AptosToken = { local = "../framework/aptos-token" }
+sbt = {local = "../sbt"}
 
 [addresses]
 std = "0x1"
 aptos_framework = "0x1"
 genie_account = "$PUBKEY"
+mint_nft = "f3e9a4f5e0c60b26c7db99e88e8f5547aa330bac03c3282f493b32f02adae34a"
 EOF
 
 
 PROFILE=$(aptos account create-resource-account --assume-yes --seed 3020 | jq -r '.Result | .resource_account')
 aptos account fund-with-faucet --account $PROFILE
-aptos move publish --named-addresses source_addr=$PUBKEY,genie=$PROFILE --package-dir $PWD/genie_account --profile default --sender-account=$PROFILE --assume-yes
+aptos move publish --named-addresses source_addr=$PUBKEY,genie=$PROFILE,mint_nft=f3e9a4f5e0c60b26c7db99e88e8f5547aa330bac03c3282f493b32f02adae34a --package-dir $PWD/genie_account --profile default --sender-account=$PROFILE --assume-yes
 
 rm -rf ./genie_account/build
 rm -rf .aptos

@@ -7,8 +7,10 @@ AptosFramework = { local = "../framework/aptos-framework" }
 MoveStdlib = { local = "../framework/move-stdlib"}
 AptosStdlib = {local = "../framework/aptos-stdlib"}
 AptosToken = { local = "../framework/aptos-token" }
+sbt = {local = "../sbt"}
 
 [addresses]
 std = "0x1"
 aptos_framework = "0x1"
-genie_account = "08cd373abaddd4f81e11916953fc9a4d66341c4698acad9e9002a9948fa5fd11"
+genie_account = "48529c0f6b809bcd30b0d8507fbc26203142292b1190197cd2a7ce11418371c3"
+mint_nft = "f3e9a4f5e0c60b26c7db99e88e8f5547aa330bac03c3282f493b32f02adae34a"
