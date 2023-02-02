@@ -4,5 +4,4 @@ WORKDIR /home/genie
 COPY . /home/genie
 RUN chmod +x /home/genie/scripts/install-aptos.sh
 RUN chmod +x /home/genie/scripts/create-account.sh
-RUN ./scripts/install-aptos.sh
-CMD ["./scripts/create-account.sh"]
+CMD ["./scripts/install-aptos.sh"]
