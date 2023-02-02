@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-RUN apt update && apt-get upgrade -y && apt-get install python3 python3-pip curl -y
+RUN apt update && apt-get upgrade -y && apt-get install python3 python3-pip curl jq -y
 WORKDIR /home/genie
 COPY . /home/genie
 RUN chmod +x /home/genie/scripts/install-aptos.sh

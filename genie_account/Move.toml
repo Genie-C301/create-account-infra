@@ -2,13 +2,13 @@
 name = "genie_account"
 version = "1.0.0"
 
-[addresses]
-std = "0x1"
-aptos_framework = "0x1"
-genie_account = "_"
-
 [dependencies]
 AptosFramework = { local = "../framework/aptos-framework" }
 MoveStdlib = { local = "../framework/move-stdlib"}
 AptosStdlib = {local = "../framework/aptos-stdlib"}
+AptosToken = { local = "../framework/aptos-token" }
 
+[addresses]
+std = "0x1"
+aptos_framework = "0x1"
+genie_account = "e412c2b813349559a77f4bacdd6a8daf53214625805676d458df2f07281e88fa"
