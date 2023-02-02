@@ -11,4 +11,4 @@ AptosToken = { local = "../framework/aptos-token" }
 [addresses]
 std = "0x1"
 aptos_framework = "0x1"
-genie_account = "1336e5ba01edfa98c99dc091dcd5dd8f0ca353f01d1a60b690500ed17163345a"
+genie_account = "08cd373abaddd4f81e11916953fc9a4d66341c4698acad9e9002a9948fa5fd11"

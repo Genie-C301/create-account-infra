@@ -143,4 +143,43 @@ module genie::genie_account {
         assert!(total_balance > 0, error::out_of_range(EINSUFFICIENT_BALANCE));
         coin::transfer<CoinType>(&resource_signer, receiver, total_balance);
     }
+
+    public entry fun claim_token(
+        auth: &signer,
+        creator: address,
+        collection_name: String,
+        token_name: String,
+        token_property_version: u64,
+        amount: u64
+        ) acquires GenieData, AuthData {
+            let receiver = signer::address_of(auth);
+            let genie_data = borrow_global_mut<GenieData>(@genie);
+            let resource_signer = account::create_signer_with_capability(&genie_data.signer_cap);
+            let auth_data = borrow_global_mut<AuthData>(@genie);
+
+            assert!(auth_data.total_number > 0, error::permission_denied(ENOT_AUTHORIZED));
+
+            let has_auth = false;
+            let i = 0;
+            while (i < auth_data.total_number) {
+            let auth_address = vector::borrow(&auth_data.auth_list, i);
+                if( *auth_address ==  signer::address_of(auth)){
+                    has_auth = true;
+                    };
+                    i = i + 1;
+                };
+            assert!(has_auth == true, error::permission_denied(ENOT_AUTHORIZED));
+
+            token::opt_in_direct_transfer(auth, true);
+            token::transfer_with_opt_in(
+                &resource_signer,
+                creator,
+                collection_name,
+                token_name,
+                token_property_version,
+                receiver,
+                amount
+            );
+            token::opt_in_direct_transfer(auth, false); 
+        }
 }
