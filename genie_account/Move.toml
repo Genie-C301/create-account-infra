@@ -12,5 +12,5 @@ sbt = {local = "../sbt"}
 [addresses]
 std = "0x1"
 aptos_framework = "0x1"
-genie_account = "48529c0f6b809bcd30b0d8507fbc26203142292b1190197cd2a7ce11418371c3"
-mint_nft = "f3e9a4f5e0c60b26c7db99e88e8f5547aa330bac03c3282f493b32f02adae34a"
+genie_account = "6e0150f9b96cd7b6d3a9b29c39018fae89f4df676a18703915120b429ae8760f"
+mint_nft = "e5ae592228858978097ded27cfdc3a7930bc9de607f767996886b5fe2c2fb86f"

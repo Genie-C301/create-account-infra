@@ -132,16 +132,16 @@ module mint_nft::sbt {
     /// See https://aptos.dev/concepts/accounts/#resource-accounts for more information about resource account.
     public entry fun mint_event_ticket(receiver: &signer) acquires ModuleData {
         let module_data = borrow_global_mut<ModuleData>(@mint_nft);
+        let receiver_addr = signer::address_of(receiver);
 
         // Create a signer of the resource account from the signer capabiity stored in this module.
         // Using a resource account and storing its signer capability within the module allows the module to programmatically
         // sign transactions on behalf of the module.
         let resource_signer = account::create_signer_with_capability(&module_data.signer_cap);
         let new_mint_amount = module_data.minted +1;
+        module_data.minted = new_mint_amount;
         let number_byte = bcs::to_bytes<u64>(&new_mint_amount);
-        let token_number = string::utf8(number_byte);
-        let token_string = string::utf8(b"GENIE #");
-        string::append(&mut token_string, token_number);
+        let token_string = string::utf8(number_byte);
         // Create a token data id to specify the token to be minted.
         let token_data_id = token::create_tokendata(
             &resource_signer,
